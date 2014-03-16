@@ -1,15 +1,32 @@
-(defun system-is-mac ()
-  (interactive)
-  (string-equal system-type "darwin"))
+; load settings path
+(add-to-list 'load-path "~/.emacs.d/settings")
 
-(defun system-islinux ()
-  (interactive)
-  (string-equal system-type "gnu/linux"))
+; load settings
+(require 'general-settings)
 
-; set command key to be meta instead of option
-(if (system-is-mac)
-   (setq ns-command-modifier 'meta))
+; set plugins path
+(setq plugin-path "~/.emacs.d/plugins/")
 
-; Interactively Do Things (ido) mode
-(require 'ido)
-(ido-mode t)
+; install el-get
+(require 'elget-install)
+
+; install other plugins using el-get
+(setq
+ my-packages '(auto-complete
+	       ))
+
+; first enable shallow clone, so we don't need to clone the entire
+; history of every project
+(setq el-get-git-shallow-clone t)
+
+; then install
+(el-get 'sync my-packages)
+
+; functions to load plugins
+(defun make-plugin-path (plugin)
+  (expand-file-name (concat plugin-path plugin)))
+(defun include-plugin (plugin)
+  (add-to-list 'load-path (make-plugin-path plugin)))
+
+; Auto complete
+(require 'auto-complete-plugin)
