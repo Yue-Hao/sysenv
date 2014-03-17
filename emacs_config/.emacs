@@ -13,6 +13,8 @@
 ; install other plugins using el-get
 (setq
  my-packages '(auto-complete
+	       jedi
+	       flycheck
 	       ))
 
 ; first enable shallow clone, so we don't need to clone the entire
@@ -30,3 +32,9 @@
 
 ; Auto complete
 (require 'auto-complete-plugin)
+
+; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+; python-mode
+(require 'python-mode)
