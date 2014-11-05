@@ -15,6 +15,7 @@
  my-packages '(auto-complete
 	       jedi
 	       flycheck
+	       slime
 	       ))
 
 ; first enable shallow clone, so we don't need to clone the entire
@@ -38,3 +39,8 @@
 
 ; python-mode
 (require 'python-mode)
+
+;slime
+(require 'slime-autoloads)
+;;TODO: fixed sbcl path -> which sbcl
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
