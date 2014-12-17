@@ -1,0 +1,4 @@
+#!/bin/sh
+#launcher for Emacs for Mac OS X
+#replace 'which emacs'
+/Applications/Emacs.app/Contents/MacOS/Emacs "$@"
